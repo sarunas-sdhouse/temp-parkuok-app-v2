@@ -1,0 +1,100 @@
+{
+  "expo": {
+    "name": "Parkuok",
+    "slug": "parkuok-app",
+    "version": "2.0.4",
+    "orientation": "portrait",
+    "icon": "./assets/logo/Icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "parkuok",
+    "experiments": {
+      "tsconfigPaths": true
+    },
+    "splash": {
+      "image": "./assets/logo/P_splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#FEFEFE"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "lt.parkuok.googleauthexporeactnative",
+      "associatedDomains": ["applinks:parkuok-new-staging.vercel.app"],
+      "infoPlist": {
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "com.googleusercontent.apps.270757186542-ke2htsatj9i18acghj77kmj9tqdaci92"
+            ]
+          }
+        ]
+      }
+    },
+    "android": {
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "parkuok-new-staging.vercel.app",
+              "pathPrefix": "/payment/success"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo/Icon_adaptive.png",
+        "backgroundColor": "#28a745"
+      },
+      "package": "lt.parkuok.googleauthexporeactnative",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCjV54pBiv_eTBnpQvEJ-oAoJWstDT1fgg"
+        }
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "./utils/withAndroidVerifiedLinksWorkaround",
+      "expo-router",
+      "expo-localization",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "deploymentTarget": "14.0"
+          }
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+          "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+          "recordAudioAndroid": true
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6d95d3a1-863f-450e-b71c-61544e8f0d77"
+      }
+    }
+  }
+}
