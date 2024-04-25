@@ -1,0 +1,84 @@
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "kotlin-parcelize"
+    id "kotlinx-serialization"
+    id "org.jmailen.kotlinter"
+}
+
+ext {
+    PUBLISH_ARTIFACT_ID = "core"
+}
+
+apply from: "${rootProject.projectDir}/maven/publish-module.gradle"
+
+android {
+    namespace "eu.kevin.core"
+
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 34
+
+        consumerProguardFiles "proguard-rules.pro"
+        resourceConfigurations += ['en', 'lt', 'ru', 'bg', 'ro', 'hu', 'el', 'et', 'pt', 'pl', 'lv', 'sk', 'cs', 'fi', 'sv', 'no', 'da', 'de', 'nl', 'fr', 'es', 'it', 'sl', 'is']
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            // withJavadocJar() https://github.com/Kotlin/dokka/issues/2956
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    kotlinOptions {
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    kotlinter {
+        ignoreFailures = false
+        experimentalRules = true
+    }
+
+    resourcePrefix 'kevin_'
+}
+
+dependencies {
+    implementation "com.google.android.material:material:$material_version"
+
+    implementation "io.ktor:ktor-client-android:$ktor_version"
+    implementation "io.ktor:ktor-serialization-kotlinx-json:$ktor_version"
+    implementation "io.ktor:ktor-client-content-negotiation:$ktor_version"
+    implementation "io.ktor:ktor-client-logging:$ktor_version"
+
+    testImplementation project(':testcore')
+    testImplementation "junit:junit:$junit_version"
+}

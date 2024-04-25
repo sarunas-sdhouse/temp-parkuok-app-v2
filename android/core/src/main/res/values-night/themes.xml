@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ResourceName">
+
+    <style name="Theme.Kevin.Base.21" parent="Theme.Kevin.Base.21.Dark" />
+
+    <style name="Theme.Kevin.Base" parent="Theme.Kevin.Base.21" />
+
+    <style name="Theme.Kevin.BottomSheet.Base.21" parent="Theme.Kevin.BottomSheet.Base.21.Dark" />
+
+    <style name="Theme.Kevin.BottomSheet.Base" parent="Theme.Kevin.BottomSheet.Base.21" />
+
+    <style name="Kevin.BottomSheet.Style" parent="Kevin.BottomSheet.Style.Dark" />
+
+</resources>

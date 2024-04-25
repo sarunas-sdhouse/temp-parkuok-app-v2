@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kevin_window_payment_confirmation_title">Staðfesting greiðslu</string>
+    <string name="kevin_dialog_exit_confirmation_payments_message">Vilt þú örugglega hætta við þessa greiðslu?</string>
+</resources>

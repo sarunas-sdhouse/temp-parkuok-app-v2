@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kevin_continue">Kontynuuj</string>
+    <string name="kevin_error_unknown">Wystąpił nieznany błąd</string>
+    <string name="kevin_error_no_internet">Brak połączenia z internetem</string>
+    <string name="kevin_yes">Tak</string>
+    <string name="kevin_no">Nie</string>
+    <string name="kevin_dialog_exit_confirmation_title">Ostrzeżenie!</string>
+    <string name="kevin_navigate_back_content_description">Wróć</string>
+</resources>

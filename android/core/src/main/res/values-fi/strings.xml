@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="kevin_continue">Jatka</string>
+    <string name="kevin_error_unknown">Tapahtui tuntematon virhe</string>
+    <string name="kevin_error_no_internet">Ei verkkoyhteyttä</string>
+    <string name="kevin_yes">Kyllä</string>
+    <string name="kevin_no">En</string>
+    <string name="kevin_dialog_exit_confirmation_title">Varoitus!</string>
+    <string name="kevin_navigate_back_content_description">Siirry takaisin</string>
+</resources>
