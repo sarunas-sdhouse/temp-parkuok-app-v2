@@ -4,27 +4,26 @@ import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.modules.core.ActivityEventListener
 import android.app.Activity
 import android.content.Intent
+import com.facebook.react.bridge.ActivityEventListener
+import eu.kevin.accounts.KevinAccountsConfiguration
+import eu.kevin.accounts.KevinAccountsPlugin
+import eu.kevin.accounts.accountsession.AccountSessionActivity
+import eu.kevin.accounts.accountsession.AccountSessionContract
+import eu.kevin.accounts.accountsession.AccountSessionResult
+import eu.kevin.accounts.accountsession.entities.AccountSessionConfiguration
+import eu.kevin.core.entities.SessionResult
+import eu.kevin.core.enums.KevinCountry
+import eu.kevin.core.plugin.Kevin
+import eu.kevin.inapppayments.KevinPaymentsConfiguration
+import eu.kevin.inapppayments.KevinPaymentsPlugin
+import eu.kevin.inapppayments.paymentsession.PaymentSessionActivity
+import eu.kevin.inapppayments.paymentsession.PaymentSessionContract
+import eu.kevin.inapppayments.paymentsession.PaymentSessionResult
+import eu.kevin.inapppayments.paymentsession.entities.PaymentSessionConfiguration
+import eu.kevin.inapppayments.paymentsession.enums.PaymentType
 import java.util.Locale
-// KEVIN SDK
-import eu.kevin.android.Kevin
-import eu.kevin.android.KevinAccountsPlugin
-import eu.kevin.android.KevinAccountsConfiguration
-import eu.kevin.android.KevinPaymentsPlugin
-import eu.kevin.android.KevinPaymentsConfiguration
-import eu.kevin.android.AccountSessionConfiguration
-import eu.kevin.android.KevinCountry
-import eu.kevin.android.AccountSessionActivity
-import eu.kevin.android.AccountSessionContract
-import eu.kevin.android.SessionResult
-import eu.kevin.android.AccountSessionResult
-import eu.kevin.android.PaymentSessionConfiguration
-import eu.kevin.android.PaymentType
-import eu.kevin.android.PaymentSessionActivity
-import eu.kevin.android.PaymentSessionContract
-import eu.kevin.android.PaymentSessionResult
 
 class KevinModule internal constructor(context: ReactApplicationContext?) :
     ReactContextBaseJavaModule(context), ActivityEventListener {
@@ -66,10 +65,6 @@ class KevinModule internal constructor(context: ReactApplicationContext?) :
             callback("Failed", null)
         }
     }
-    
-    companion object {
-        const val REQUEST_CODE_ACCOUNT_LINKING = 100
-    }
 
     override fun onActivityResult(
         activity: Activity?,
@@ -89,6 +84,7 @@ class KevinModule internal constructor(context: ReactApplicationContext?) :
                 is SessionResult.Failure -> {
                     callback?.invoke("Failed", null)
                 }
+                else -> {}
             }
         }
 
@@ -104,14 +100,19 @@ class KevinModule internal constructor(context: ReactApplicationContext?) :
                 is SessionResult.Failure -> {
                     callback?.invoke("Failed", null)
                 }
+                else -> {}
             }
         }
+    }
+
+    override fun onNewIntent(p0: Intent?) {
+
     }
 
     @ReactMethod
     fun openKevinBankPayment(state: String, callback: Callback) {
         try {
-            val paymentConfiguration = PaymentSessionConfiguration.Builder(id)
+            val paymentConfiguration = PaymentSessionConfiguration.Builder(state)
                 .setPaymentType(PaymentType.BANK)
                 .setPreselectedCountry(KevinCountry.LITHUANIA)
                 .build()
@@ -126,5 +127,10 @@ class KevinModule internal constructor(context: ReactApplicationContext?) :
     
     companion object {
         const val REQUEST_CODE_PAYMENT = 101
+        const val REQUEST_CODE_ACCOUNT_LINKING = 100
+    }
+
+    override fun getName(): String {
+        return "something"
     }
 }
